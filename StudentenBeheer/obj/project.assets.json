@@ -10572,11 +10572,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaimy\\source\\repos\\StudentenBeheer-master\\StudentenBeheer\\StudentenBeheer.csproj",
+      "projectUniqueName": "C:\\Users\\jaimy\\Documents\\GitHub\\StudentenBeheer\\StudentenBeheer\\StudentenBeheer.csproj",
       "projectName": "StudentenBeheer",
-      "projectPath": "C:\\Users\\jaimy\\source\\repos\\StudentenBeheer-master\\StudentenBeheer\\StudentenBeheer.csproj",
+      "projectPath": "C:\\Users\\jaimy\\Documents\\GitHub\\StudentenBeheer\\StudentenBeheer\\StudentenBeheer.csproj",
       "packagesPath": "C:\\Users\\jaimy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaimy\\source\\repos\\StudentenBeheer-master\\StudentenBeheer\\obj\\",
+      "outputPath": "C:\\Users\\jaimy\\Documents\\GitHub\\StudentenBeheer\\StudentenBeheer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jaimy\\AppData\\Roaming\\NuGet\\NuGet.Config",
