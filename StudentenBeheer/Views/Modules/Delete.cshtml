@@ -1,0 +1,33 @@
+﻿@model StudentenBeheer.Models.Module
+
+@{
+    ViewData["Title"] = "Verwijderen";
+}
+
+<h1>Verwijder</h1>
+
+<h3>Ben je zeker dat je deze module wil verwijderen?</h3>
+<div>
+    <h4>Module</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Omschrijving)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Verwijder" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar Overzicht</a>
+    </form>
+</div>
