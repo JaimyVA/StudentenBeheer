@@ -1,23 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using StudentenBeheer.Data;
 using StudentenBeheer.Models;
 
 namespace StudentenBeheer.Controllers
 {
     [Authorize]
-    public class ModulesController : Controller
+    public class ModulesController : ApplicationController
     {
-        private readonly ApplicationContext _context;
 
-        public ModulesController(ApplicationContext context)
+        private readonly IStringLocalizer<ModulesController> _localizer;
+
+        public ModulesController(ApplicationContext context,
+                                        IHttpContextAccessor httpContextAccessor,
+                                        ILogger<ApplicationController> logger, IStringLocalizer<ModulesController> localizer) : base(context, httpContextAccessor, logger)
         {
-            _context = context;
+            _localizer = localizer;
         }
 
-
         // GET: Modules
+
         public async Task<IActionResult> Index()
         {
             var module = from m in _context.Module
@@ -27,9 +31,9 @@ namespace StudentenBeheer.Controllers
             return View(await module.ToListAsync());
         }
 
-        [Authorize(Roles = "Admin")]
-
+        //[Authorize]
         // GET: Modules/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,16 +52,18 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Modules/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Modules/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public async Task<IActionResult> Create([Bind("Id,Name,Omschrijving")] Module @module)
         {
             if (ModelState.IsValid)
@@ -70,7 +76,7 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Modules/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,9 +93,11 @@ namespace StudentenBeheer.Controllers
         }
 
         // POST: Modules/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Omschrijving")] Module @module)
         {
             if (id != @module.Id)
@@ -121,7 +129,7 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Modules/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,7 +150,7 @@ namespace StudentenBeheer.Controllers
         // POST: Modules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Docent,Beheerder")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var @module = await _context.Module.FindAsync(id);

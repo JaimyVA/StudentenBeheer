@@ -22,4 +22,6 @@ public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
     }
+    public DbSet<StudentenBeheer.Models.Docent> Docent { get; set; }
+    public DbSet<StudentenBeheer.Models.Docenten_modules> Docenten_modules { get; set; }
 }

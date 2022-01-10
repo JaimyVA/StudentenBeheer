@@ -289,10 +289,6 @@ C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Build.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Build.Framework.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Build.Tasks.Core.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Build.Utilities.Core.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -343,7 +339,6 @@ C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\NuGet.Protocol.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\NuGet.Versioning.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\BouncyCastle.Crypto.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.CodeDom.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Composition.AttributedModel.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Composition.Convention.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Composition.Hosting.dll
@@ -352,7 +347,6 @@ C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Resources.Extensions.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Runtime.Caching.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\System.Security.Permissions.dll
@@ -527,7 +521,6 @@ C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.csproj.AssemblyReference.cache
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.AssemblyInfoInputs.cache
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.AssemblyInfo.cs
@@ -546,3 +539,10 @@ C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\ref\StudentenBeheer.dll
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.pdb
 C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.genruntimeconfig.cache
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Build.Locator.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\jaimy\Documents\GitHub\StudentenBeheer\StudentenBeheer\obj\Debug\net6.0\StudentenBeheer.csproj.AssemblyReference.cache

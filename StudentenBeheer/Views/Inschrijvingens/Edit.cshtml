@@ -1,7 +1,7 @@
 ﻿@model StudentenBeheer.Models.Inschrijvingen
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Bewerken";
 }
 
 <h1>Edit</h1>
@@ -39,14 +39,14 @@
                 <span asp-validation-for="Resultaat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Opslaan" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Terug naar overzicht</a>
 </div>
 
 @section Scripts {

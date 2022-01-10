@@ -5,6 +5,11 @@
       "ProjectGuid": "cdb65a31-4af4-4827-a38a-1646b7b657e8",
       "DisplayName": "StudentenBeheer",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

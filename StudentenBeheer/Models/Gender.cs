@@ -10,8 +10,5 @@ namespace StudentenBeheer.Models
         [Required]
         [Display(Name = "Naam")]
         public string Name { get; set; }
-
-
-
     }
 }

@@ -5,10 +5,11 @@
 }
 
 <h1>Modules</h1>
-
+                    
 <p>
     <a asp-action="Create">Module Toevoegen</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -31,10 +32,10 @@
                 @Html.DisplayFor(modelItem => item.Omschrijving)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Wijzig</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Verwijder</a> |
-                <a asp-action="Create" asp-controller="Inschrijvingens"asp-route-id="@item.Id" asp-route-welke="0">Inschrijving</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Wijzigen</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Verwijder</a> |
+                    <a asp-action="Create" asp-controller="Inschrijvingens"asp-route-id="@item.Id" asp-route-welke="0">Inschrijving</a>
             </td>
         </tr>
 }

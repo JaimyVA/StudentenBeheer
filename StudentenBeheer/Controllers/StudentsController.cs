@@ -7,7 +7,7 @@ using StudentenBeheer.Models;
 
 namespace StudentenBeheer.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Docent, Beheerder")]
     public class StudentsController : Controller
     {
         private readonly ApplicationContext _context;
@@ -73,12 +73,7 @@ namespace StudentenBeheer.Controllers
                     break;
             }
 
-            // Lijst van groepen 
             IQueryable<Student> groupsToSelect = from g in _context.Student orderby g.Name select g;
-
-            // Maak een object van de view-model-class en voeg daarin alle wat we nodig hebben
-
-            // encore a faire
 
             StudentsIndexViewModel studentviewmodel = new StudentsIndexViewModel()
             {
@@ -86,13 +81,8 @@ namespace StudentenBeheer.Controllers
                 GenderFilter = genderFilter,
                 FilteredStudents = await filteredStudents.Include(s => s.Gender).ToListAsync(),
                 ListGenders = new SelectList(await groupsToSelect.ToListAsync(), "ID", "Name", genderFilter)
-
-
             };
-
             return View(studentviewmodel);
-
-
         }
 
         // GET: Students/Details/5
@@ -110,7 +100,6 @@ namespace StudentenBeheer.Controllers
             {
                 return NotFound();
             }
-
             return View(student);
         }
 
@@ -202,7 +191,6 @@ namespace StudentenBeheer.Controllers
             {
                 return NotFound();
             }
-
             return View(student);
         }
 

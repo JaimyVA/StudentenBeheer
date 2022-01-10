@@ -15,31 +15,58 @@ namespace StudentenBeheer.Data
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationContext>>()))
             {
-                ApplicationUser user = null;
+                //ApplicationUser user = null;
                 context.Database.EnsureCreated();
+
+                ApplicationUser Beheerder = null;
+                ApplicationUser Docent1 = null;
+                ApplicationUser Student1 = null;
 
                 if (!context.Users.Any())
                 {
-                    user = new ApplicationUser
+                    ApplicationUser dummy = new ApplicationUser { Id = "-", Firstname = "-", Lastname = "-", UserName = "-", Email = "?@?.?"};
+                    context.Users.Add(dummy);
+                    context.SaveChanges();
+
+                    Beheerder = new ApplicationUser
                     {
-                        UserName = "Admin",
+                        UserName = "Beheerder",
                         Firstname = "Jaimy",
                         Lastname = "Van Audenhove",
                         Email = "System.administrator@studentenbeheer.be",
                         EmailConfirmed = true
                     };
 
-                    userManager.CreateAsync(user, "AdminJaimy123_");
+                    Docent1 = new ApplicationUser
+                    {
+                        UserName = "Docent1",
+                        Firstname = "Meneer",
+                        Lastname = "Docent",
+                        Email = "System.User@studentenbeheer.be",
+                        EmailConfirmed = true
+                    };
+
+                    Student1 = new ApplicationUser
+                    {
+                        UserName = "Student1",
+                        Firstname = "Student",
+                        Lastname = "Test",
+                        Email = "System.User@studentenbeheer.be",
+                        EmailConfirmed = true
+                    };
+
+                    userManager.CreateAsync(Beheerder, "Abc!12345");
+                    userManager.CreateAsync(Docent1, "Abc!12345");
+                    userManager.CreateAsync(Student1, "Abc!12345");
                 }
 
                 if (!context.Roles.Any())
                 {
-
                     context.Roles.AddRange(
 
-                            new IdentityRole { Id = "User", Name = "User", NormalizedName = "user" },
-                            new IdentityRole { Id = "Admin", Name = "Admin", NormalizedName = "admin" }
-
+                            new IdentityRole { Id = "Beheerder", Name = "Beheerder", NormalizedName = "beheerder" },
+                            new IdentityRole { Id = "Docent", Name = "Docent", NormalizedName = "docent" },
+                            new IdentityRole { Id = "Student", Name = "Student", NormalizedName = "student" }
                             );
 
                     context.SaveChanges();
@@ -77,13 +104,12 @@ namespace StudentenBeheer.Data
 
                                new Student
                                {
-                                   Name = "Test",
-                                   Lastname = "Test",
+                                   Name = "Jaimy",
+                                   Lastname = "Van Audenhove",
                                    Birthday = DateTime.Now,
-                                   GenderId = 'X',
+                                   GenderId = 'M',
+                                   UserId = Student1.Id,
                                    Deleted = DateTime.MaxValue
-
-
                                },
                                new Student
                                {
@@ -91,13 +117,30 @@ namespace StudentenBeheer.Data
                                    Lastname = "Oudaert",
                                    Birthday = DateTime.Now,
                                    GenderId = 'F',
-                                   Deleted = DateTime.MaxValue
-
-
+                                   Deleted = DateTime.Now
                                }
                         );
                     context.SaveChanges();
 
+                }
+
+                if (!context.Docent.Any())
+                {
+                    context.Docent.AddRange(
+
+                          new Docent
+                          {
+                              FirstName = "Docent1",
+                              LastName = "Docent1",
+                              Birthday = DateTime.Now,
+                              GenderId = 'M',
+                              UserId = Docent1.Id,
+                              Email = "Docent1@ehb.be",
+                              DeletedAt = DateTime.MaxValue
+                          }
+
+                        );
+                    context.SaveChanges();
                 }
 
                 if (!context.Module.Any())
@@ -121,11 +164,25 @@ namespace StudentenBeheer.Data
                     context.SaveChanges();
                 }
 
-                if (user != null)
+                if (!context.Docenten_modules.Any())
+                {
+                    context.Docenten_modules.AddRange(
+
+                        new Docenten_modules
+                        {
+                            ModuleId = 1,
+                            DocentId = 1
+                        });
+                }
+
+                if (Beheerder != null && Docent1 != null && Student1 != null)
                 {
                     context.UserRoles.AddRange(
 
-                        new IdentityUserRole<string> { UserId = user.Id, RoleId = "Admin" }
+                        new IdentityUserRole<string> { UserId = Beheerder.Id, RoleId = "Beheerder" },
+                        new IdentityUserRole<string> { UserId = Docent1.Id, RoleId = "Docent" },
+                        new IdentityUserRole<string> { UserId = Student1.Id, RoleId = "Student" }
+
                         );
 
                     context.SaveChanges();

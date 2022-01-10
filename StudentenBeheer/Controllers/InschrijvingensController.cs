@@ -2,30 +2,55 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using StudentenBeheer.Data;
 using StudentenBeheer.Models;
 
 namespace StudentenBeheer.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
-    public class InschrijvingensController : Controller
+    [Authorize]
+    public class InschrijvingensController : ApplicationController
     {
-        private readonly ApplicationContext _context;
+        //private readonly ApplicationContext _context;
+        private readonly IStringLocalizer<InschrijvingensController> _localizer;
 
-        public InschrijvingensController(ApplicationContext context)
+        public InschrijvingensController(ApplicationContext context,
+                                        IHttpContextAccessor httpContextAccessor,
+                                        ILogger<ApplicationController> logger, IStringLocalizer<InschrijvingensController> localizer) : base(context, httpContextAccessor, logger)
         {
-            _context = context;
+            _localizer = localizer;
         }
 
         // GET: Inschrijvingens
         public async Task<IActionResult> Index()
         {
-            var studentenBeheerContext = _context.Inschrijvingen.Include(i => i.Module).Include(i => i.Student);
+            var studentenBeheerContext = _context.Inschrijvingen.Include(i => i.Module).Include(i => i.Student).Where(i => i.Student.UserId == _user.Id);
+
+            if (!User.IsInRole("Student"))
+            {
+                studentenBeheerContext = _context.Inschrijvingen.Include(i => i.Module).Include(i => i.Student);
+            }
+
+            if (User.IsInRole("Docent"))
+            {
+                var Modules = _context.Docenten_modules.Include(m => m.module).Include(m => m.docent)
+                                                       .Where(m => m.docent.UserId == _user.Id)
+                                                       .Select(m => m.module.Id)
+                                                       .ToList();
+
+                studentenBeheerContext = _context.Inschrijvingen.Include(i => i.Module)
+                                                                .Include(i => i.Student)
+                                                                .Where(i => Modules.Contains(i.Module.Id));
+            }
+
+
+
             return View(await studentenBeheerContext.ToListAsync());
         }
 
         // GET: Inschrijvingens/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +71,7 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Inschrijvingens/Create
+        [Authorize(Roles = "Beheerder")]
         public IActionResult Create(int? id, int? welke)
         {
             var student = _context.Student.Where(s => s.Deleted > DateTime.Now);
@@ -79,9 +105,12 @@ namespace StudentenBeheer.Controllers
         }
 
         // POST: Inschrijvingens/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModuleId,StudentId,InschrijvingsDatum,AfgelegdOp,Resultaat")] Inschrijvingen inschrijvingen)
+        [Authorize(Roles = "Beheerder")]
+        public async Task<IActionResult> Create(int? id, int? welke, [Bind("Id,ModuleId,StudentId,InschrijvingsDatum,AfgelegdOp,Resultaat")] Inschrijvingen inschrijvingen)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +124,7 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Inschrijvingens/Edit/5
+        [Authorize(Roles = "Beheerder")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -113,8 +143,11 @@ namespace StudentenBeheer.Controllers
         }
 
         // POST: Inschrijvingens/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Beheerder")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ModuleId,StudentId,InschrijvingsDatum,AfgelegdOp,Resultaat")] Inschrijvingen inschrijvingen)
         {
             if (id != inschrijvingen.Id)
@@ -148,6 +181,7 @@ namespace StudentenBeheer.Controllers
         }
 
         // GET: Inschrijvingens/Delete/5
+        [Authorize(Roles = "Beheerder")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -170,6 +204,7 @@ namespace StudentenBeheer.Controllers
         // POST: Inschrijvingens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Beheerder")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var inschrijvingen = await _context.Inschrijvingen.FindAsync(id);

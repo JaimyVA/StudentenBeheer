@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using NETCore.MailKit.Infrastructure.Internal;
 using StudentenBeheer.Areas.Identity.Data;
 using StudentenBeheer.Data;
-using StudentenBeheer.Services.GroupSacePrep.Services;
+using StudentenBeheer.Models;
+using StudentenBeheer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +13,19 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddDefaultIdentity<ApplicationUser>((IdentityOptions options) => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<StudentenBeheer.Data.ApplicationContext>();
+    .AddEntityFrameworkStores<ApplicationContext>();
 
-// password settings
-// Add services to the container.
+builder.Services.AddMvc()
+       .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+       .AddDataAnnotationsLocalization();
+
+builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
+
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -28,39 +36,26 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 8;
     options.Password.RequiredUniqueChars = 1;
 
-    // lockout settings
-
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
 
-    // ApplicationUser settings
-
     options.User.RequireUniqueEmail = false;
 });
 
-builder.Services.AddTransient<IEmailSender, MailKitEmailSender>();
-builder.Services.Configure<MailKitOptions>(options =>
-{
-    options.Server = builder.Configuration["ExternalProviders:MailKit:SMTP:Address"];
-    options.Port = Convert.ToInt32(builder.Configuration["ExternalProviders:MailKit:SMTP:Port"]);
-    options.Account = builder.Configuration["ExternalProviders:MailKit:SMTP:Account"];
-    options.Password = builder.Configuration["ExternalProviders:MailKit:SMTP:Password"];
-    options.SenderEmail = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderEmail"];
-    options.SenderName = builder.Configuration["ExternalProviders:MailKit:SMTP:SenderName"];
-
-    // Set it to TRUE to enable ssl or tls, FALSE otherwise
-    options.Security = false;
-});
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
+
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -69,13 +64,11 @@ using (var scope = app.Services.CreateScope())
     SeedDatabase.Initialize(services, userManager);
 }
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}"); 
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseMiddleware<SessionUser>();
 
 app.MapRazorPages();
 

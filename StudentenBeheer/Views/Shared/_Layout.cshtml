@@ -30,8 +30,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Modules" asp-action="Index">Modules</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Docents" asp-action="Index">Docenten</a>
+                        </li>
+                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Inschrijvingens" asp-action="Index">Inschrijvingen</a>
                         </li>
+                            @if (User.IsInRole("Beheerder"))
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Gebruikersbeheer</a>
+                            </li>
+                            }
                     </ul>
                         <partial name="_LoginPartial" />
                 </div>
